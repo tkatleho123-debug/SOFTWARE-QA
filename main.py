@@ -3,102 +3,73 @@ import shutil
 
 def scan_tool():
     try:
-        Filename = input("Enter a Filename : ")
-        if not Filename :
-            print("You Entered Nothing Please try again")
+        filename = input("Enter a Filename: ")
+        if not filename:
+            print("You entered nothing, please try again")
         else:
-            with open(Filename, "r") as File:
-                for line in File:
+            with open(filename, "r") as file:
+                for line in file:
                     if "error" in line.lower():
                         print("Found Error:", line)
- 
     except Exception as e:
         print("Something went wrong")
         print(e)
- #----------------------------------------------------------------------       
+
 def backup_tool():
-	try:
-		source =input("Enter a source :")
-		backup =input("Enter a backup :")
-		
-		if os.path.exists(source):
-			if os.path.exists(backup):
-				print("That folder already exists")
-			else:
-				shutil.copytree(source,backup)
-				print("Folder was copied")
-		else:
-			print("Folder not found there")
-	except Exception as e:
-		print("Something went wrong")
-		print(e)
-        
-#----------------------------------------------------------------------
+    try:
+        source = input("Enter a source: ")
+        backup = input("Enter a backup: ")
+        if os.path.exists(source):
+            if os.path.exists(backup):
+                print("That folder already exists")
+            else:
+                shutil.copytree(source, backup)
+                print("Folder was copied")
+        else:
+            print("Folder not found")
+    except Exception as e:
+        print("Something went wrong")
+        print(e)
 
 def cleanup_tool():
     try:
-        Folder =input("Enter a folder to clean :")
-        
-        if not Folder:
-            print("You did not entered any folder")
-            
+        folder = input("Enter a folder to clean: ")
+        if not folder:
+            print("You did not enter any folder")
         else:
-            for file in os.listdir(Folder):
-                path =os.path.join(Folder,file)
-                
+            for file in os.listdir(folder):
+                path = os.path.join(folder, file)
                 try:
                     if os.path.isfile(path):
                         os.remove(path)
-                        print("Files were deleted")
-                        
-                    elif os.path.isdir(path):
-                        os.rmdir(path)
-                        print("Directories were deleted")
-                        
+                        print(f"Deleted file: {file}")
                 except Exception as e:
-                    print("Something went wrong")
-                    print(e)
-                
+                    print(f"Failed to delete {file}: {e}")
     except Exception as e:
-        print("Something went wrong((")
+        print("Something went wrong")
         print(e)
-        
-#----------------------------------------------------------------------
 
 while True:
-	print("-"*65)
-	print("In====IT SUPPORT TOOLKIT====")
-	print("1.Backup files")
-	print("2.Scan log")
-	print("3.Cleaning")
-	print("4.Exit")
-	
-	print("-"*65)
-	choice =input("Choose 1-4 :")
-	print("-"*65)
-	
-	if not choice:
-		print("You did not choose anything".upper())
-		print("-"*65)
-		
-	elif choice == "1":
-		print("Backup Selected".upper())
-		print("-"*65)
-		backup_tool()
-		
-	elif choice == "2":
-		print("Scan Selected".upper())
-		print("-"*65)
-		scan_tool()
-		
-	elif choice == "3":
-		print("Cleanup Selected".upper())
-		print("-"*65)
-		cleanup_tool()
-		
-	elif choice == "4":
-		print("Exit.....".upper())
-		break
-		
-	else:
-		print("wrong choice,try again")
+    print("-"*65)
+    print("==== IT SUPPORT TOOLKIT ====")
+    print("1.Backup files")
+    print("2.Scan log")
+    print("3.Cleaning")
+    print("4.Exit")
+    print("-"*65)
+    choice = input("Choose 1-4: ")
+    
+    if choice == "1":
+        print("BACKUP SELECTED")
+        backup_tool()
+    elif choice == "2":
+        print("SCAN SELECTED")
+        scan_tool()
+    elif choice == "3":
+        print("CLEANUP SELECTED")
+        cleanup_tool()
+    elif choice == "4":
+        print("EXIT.....")
+        break
+    else:
+        print("Wrong choice, try again")
