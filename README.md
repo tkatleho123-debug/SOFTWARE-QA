@@ -1,2 +1,1 @@
-# It-Support-Toolkit
-it-support-toolkit Description: My IT Support Toolkit built with Python - backup, scan, cleanup
+Aspiring Sofware QA | Manual and Python | Ex-IT Support | Bug tracking, Test Cases
